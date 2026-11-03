@@ -46,27 +46,29 @@ p{max-width:50ch;font-size:clamp(15.5px,1.25vw,18px);line-height:1.7;color:var(-
 .creed em{font-style:normal;color:var(--signal)}
 .creed .y{color:var(--astra)}
 @media(max-width:860px){.creed{grid-template-columns:minmax(0,1fr)}}
-.chev{position:absolute;left:50%;bottom:34px;width:44px;height:44px;padding:11px;opacity:.95;border-radius:50%;
-  background:rgba(0,0,0,.72);box-shadow:0 0 0 1px rgba(255,255,255,.14),0 0 28px rgba(0,0,0,.9);animation:nod 2.6s ease-in-out infinite;z-index:2}
-a.chevl{border:0}
-@keyframes nod{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
+.chevl{position:absolute;left:50%;bottom:34px;width:44px;height:44px;margin-left:-22px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:#0e1013;border:1px solid rgba(255,255,255,.2);
+  animation:nod 2.6s ease-in-out infinite;z-index:2;-webkit-tap-highlight-color:transparent;transition:border-color .2s}
+.chevl:hover{border-color:rgba(255,255,255,.45)}
+.chev{width:18px;height:18px;display:block;opacity:.95}
+@keyframes nod{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 a{color:var(--ink);text-decoration:none}
 a.mail{font-family:var(--mono);font-size:clamp(13px,1.2vw,15px);letter-spacing:.14em;text-transform:uppercase;margin-top:30px;display:inline-block;
   border-bottom:1px solid var(--line);padding-bottom:4px;transition:border-color .2s}
 a.mail:hover{border-color:var(--signal)}
 footer{position:relative;z-index:1;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:26px 24px;border-top:1px solid var(--line-2);background:#0e1013}
-@media(prefers-reduced-motion:reduce){.chev{animation:none}}
+@media(prefers-reduced-motion:reduce){.chevl{animation:none}}
 @media(max-width:1100px){#top h2,#wer h2{white-space:normal !important;max-width:30ch !important}#top h2 br,#wer h2 br{display:none}}
 @media(max-width:700px){
   section{padding:12vh 20px 16vh}
   section::before{--hr:170px}
   h2{font-size:clamp(20px,5.6vw,26px);line-height:1.38;max-width:100%;hyphens:manual}
   nav{height:70px}
-  .chev{bottom:22px;width:40px;height:40px;padding:10px}
+  .chevl{bottom:22px;width:40px;height:40px;margin-left:-20px}
   a.mail{font-size:12.5px;letter-spacing:.12em}
   footer{padding:20px;justify-content:center;text-align:center}
 }
-@media(max-height:480px) and (orientation:landscape){section{padding:8vh 24px 12vh}.mark{margin-bottom:16px}.chev{bottom:12px}}
+@media(max-height:480px) and (orientation:landscape){section{padding:8vh 24px 12vh}.mark{margin-bottom:16px}.chevl{bottom:12px}}
 /* Tafeln nach dem Hero niedriger, damit die Abstände zwischen den Texten kleiner werden */
 section:not(#top){min-height:100svh}
 </style>
