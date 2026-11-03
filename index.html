@@ -25,8 +25,8 @@ section{position:relative;z-index:1;min-height:100svh;display:flex;flex-directio
 /* Schleier hinter dem Text, mit Loch unter dem Zeiger wie im Hero der Hauptseite */
 section::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(ellipse 62% 58% at 50% 50%,rgba(0,0,0,.72) 0%,rgba(0,0,0,.4) 55%,rgba(0,0,0,0) 100%);
-  -webkit-mask-image:radial-gradient(circle var(--hr,300px) at var(--hx,-999px) var(--hy,-999px),rgba(0,0,0,.3) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.85) 75%,#000 100%);
-  mask-image:radial-gradient(circle var(--hr,300px) at var(--hx,-999px) var(--hy,-999px),rgba(0,0,0,.3) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.85) 75%,#000 100%)}
+  -webkit-mask-image:radial-gradient(circle var(--hr,190px) at var(--hx,-999px) var(--hy,-999px),rgba(0,0,0,.3) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.85) 75%,#000 100%);
+  mask-image:radial-gradient(circle var(--hr,190px) at var(--hx,-999px) var(--hy,-999px),rgba(0,0,0,.3) 0%,rgba(0,0,0,.55) 45%,rgba(0,0,0,.85) 75%,#000 100%)}
 section + section{border-top:1px solid var(--line-2)}
 .mark{width:clamp(60px,7.5vw,90px);height:auto;margin-bottom:clamp(30px,4vh,48px)}
 .mark .ring{stroke:var(--ink);opacity:.85}.mark .arc{stroke:var(--signal)}.mark .dot{fill:var(--signal)}
@@ -61,7 +61,7 @@ footer{position:relative;z-index:1;display:flex;justify-content:space-between;ga
 @media(max-width:1100px){#top h2,#wer h2{white-space:normal !important;max-width:30ch !important}#top h2 br,#wer h2 br{display:none}}
 @media(max-width:700px){
   section{padding:12vh 20px 16vh}
-  section::before{--hr:170px}
+  section::before{--hr:130px}
   h2{font-size:clamp(20px,5.6vw,26px);line-height:1.38;max-width:100%;hyphens:manual}
   nav{height:70px}
   .chevl{bottom:22px;width:40px;height:40px;margin-left:-20px}
@@ -217,7 +217,7 @@ var CLAIMSTRA_ASTRA = /astra|pathfinder|rollout|claims?_?path/i;
   var cv = document.getElementById('ascii');
   if (cv) {
     var ctx = cv.getContext('2d', { alpha: false });
-    var cell = 10, opa = 0.9, motion = !reduce;
+    var cell = 10, opa = 0.72, motion = !reduce;
     var W = 0, H = 0, dpr = 1, cw = 0, ch = 0, cols = 0, rows = 0;
     var tmx = -9, tmy = -9, mx = -9, my = -9, hov = 0, thov = 0;
     var tpx = -999, tpy = -999, ppx = -999, ppy = -999;   // Zeiger in Bildschirmpunkten
@@ -371,10 +371,10 @@ var CLAIMSTRA_ASTRA = /astra|pathfinder|rollout|claims?_?path/i;
           if (hov > 0.01) {
             var qx = xx - mx, qy = yy - my;
             var pd2 = qx * qx + qy * qy;
-            hw = Math.exp(-pd2 * 14.0) * hov;                 // engerer Kern
-            n += hw * 0.74 * hg
-               + Math.sin(Math.sqrt(pd2) * 17.5 - t * 5.2) * Math.exp(-pd2 * 10.0) * 0.24 * hov
-               + Math.exp(-pd2 * 3.2) * 0.16 * hov * hg;
+            hw = Math.exp(-pd2 * 30.0) * hov;                 // enger Kern
+            n += hw * 0.70 * hg
+               + Math.sin(Math.sqrt(pd2) * 17.5 - t * 5.2) * Math.exp(-pd2 * 22.0) * 0.18 * hov
+               + Math.exp(-pd2 * 9.0) * 0.10 * hov * hg;
           }
 
           // im Zeigerbereich zurück auf mehr Auflösung und Dichte
@@ -430,17 +430,17 @@ var CLAIMSTRA_ASTRA = /astra|pathfinder|rollout|claims?_?path/i;
       // dieselbe Ebene wie der Code.
       if (hov > 0.01 && ppx > -100) {
         ctx.globalCompositeOperation = 'lighter';
-        var rb = Math.max(210, Math.min(W, H) * 0.34);
+        var rb = Math.max(130, Math.min(W, H) * 0.19);
         var gb = ctx.createRadialGradient(ppx, ppy, 0, ppx, ppy, rb);
-        gb.addColorStop(0, 'rgba(56,189,248,' + (0.20 * hov).toFixed(3) + ')');
-        gb.addColorStop(0.45, 'rgba(56,189,248,' + (0.075 * hov).toFixed(3) + ')');
+        gb.addColorStop(0, 'rgba(56,189,248,' + (0.15 * hov).toFixed(3) + ')');
+        gb.addColorStop(0.45, 'rgba(56,189,248,' + (0.05 * hov).toFixed(3) + ')');
         gb.addColorStop(1, 'rgba(56,189,248,0)');
         ctx.fillStyle = gb;
         ctx.fillRect(ppx - rb, ppy - rb, rb * 2, rb * 2);
 
         var ry = rb * 0.40;
         var gy = ctx.createRadialGradient(ppx, ppy, 0, ppx, ppy, ry);
-        gy.addColorStop(0, 'rgba(250,204,21,' + (0.20 * hov).toFixed(3) + ')');
+        gy.addColorStop(0, 'rgba(250,204,21,' + (0.15 * hov).toFixed(3) + ')');
         gy.addColorStop(1, 'rgba(250,204,21,0)');
         ctx.fillStyle = gy;
         ctx.fillRect(ppx - ry, ppy - ry, ry * 2, ry * 2);
@@ -458,9 +458,9 @@ var CLAIMSTRA_ASTRA = /astra|pathfinder|rollout|claims?_?path/i;
       depth += (Math.min(1, d) - depth) * 0.12;  // unterhalb des Heros zurücknehmen
       mul = 1 - 0.87 * depth;
       if (motion) reroll(now);
-      mx += (tmx - mx) * 0.16;                  // Zeiger weich nachziehen
-      my += (tmy - my) * 0.16;
-      ppx += (tpx - ppx) * 0.16; ppy += (tpy - ppy) * 0.16;
+      mx += (tmx - mx) * 0.3;                   // Zeiger folgt direkt
+      my += (tmy - my) * 0.3;
+      ppx += (tpx - ppx) * 0.3; ppy += (tpy - ppy) * 0.3;
       hov += (thov - hov) * (now - born < 2500 ? 0.025 : 0.09);
       draw(now);
     }
@@ -503,7 +503,7 @@ var CLAIMSTRA_ASTRA = /astra|pathfinder|rollout|claims?_?path/i;
       tmx = ((cx / window.innerWidth) * 2 - 1) * 1.15;
       tmy = ((cy / window.innerHeight) * 2 - 1) * 1.15 * (window.innerHeight / window.innerWidth);
       if (mx < -5) { mx = tmx; my = tmy; }
-      thov = 1 - 0.5 * Math.min(1, window.scrollY / (window.innerHeight * 0.85));
+      thov = 0.8 - 0.4 * Math.min(1, window.scrollY / (window.innerHeight * 0.85));
     }
     window.addEventListener('pointermove', function (e) {
       if (!aimed && e.clientX === 0 && e.clientY === 0) return;   // synthetischer Erstimpuls bei (0,0)
